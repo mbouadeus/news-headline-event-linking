@@ -11,12 +11,14 @@ The dataset is available on Zenodo: https://doi.org/10.5281/zenodo.7909377
 The dataset is provided in a JSON format. In this JSON object, the keys correspond to the news headlines and the values are a list of objects with fields `id` and `label`: `id` is the Wikidata qid of the annotated entity and `label` is the Wikidata label.
 
 #### Example
+```
 {
     "Strong earthquake hits east of Acapulco, Mexico, 'people are worried'" : {
         "id": "Q7944",
         "label": "earthquake"
     }
 }
+```
 
 ## Evaluation Framework
 
@@ -26,6 +28,11 @@ Our evaluation framework consists of:
 - A script to calculate the accuracy metrics: [event_identification_evaluation.py](event_identification_evaluation.py)
 - The metrics calculated from the evaluation script will be stored: [results/](results/)
 
+The run the evaluation script, call:
+```
+python3 event_identification_evaluation.py
+Enter a linking ouputs path: data/linking_outputs/{choose an output}
+```
 
 ## License
 
