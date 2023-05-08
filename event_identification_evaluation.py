@@ -10,7 +10,7 @@ if not os.path.exists(linking_outputs_path):
 with open(linking_outputs_path, "r") as f:
     linking_outputs = json.loads(f.read())
 # news headlines dataset
-with open("data/news_events_manual.json", "r") as f:
+with open("data/news_event_identication_dataset.json", "r") as f:
     input_data = json.loads(f.read())
 
 # evaluate accuracy metrics
