@@ -559,7 +559,7 @@
     "Attack at Texas elementary school kills at least 19, including 18 children": "",
     "Chilean authorities report first COVID-19 outbreak in Antarctica": ""
   },
-  "gpt_direct_types": {
+  "gptj_el_types": {
     "Myanmar military vows to abide by constitution amid coup fears": "Q45382",
     "Strong earthquake hits east of Acapulco, Mexico, 'people are worried'": "Q7944",
     "Cuomo sexually harassed multiple women, including employees, New York attorney general report finds": "Q480498",
@@ -671,7 +671,7 @@
     "Attack at Texas elementary school kills at least 19, including 18 children": "Q473853",
     "Chilean authorities report first COVID-19 outbreak in Antarctica": "Q17164849"
   },
-  "gpt_direct": {
+  "gptj_el": {
     "Myanmar military vows to abide by constitution amid coup fears": "Q891854",
     "Strong earthquake hits east of Acapulco, Mexico, 'people are worried'": "Q7944",
     "Cuomo sexually harassed multiple women, including employees, New York attorney general report finds": "Q480498",

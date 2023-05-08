@@ -36,7 +36,7 @@ def eval_basic(input_data, apis, get_scores):
         metrics[api] = summing / len(input_data)
     return metrics
 
-methods = [ "opentapioca", "falcon", "wikifier", "opentapioca_el", "falcon_el", "gpt_direct", "gpt_direct_types"]
+methods = [ "opentapioca", "falcon", "wikifier", "opentapioca_el", "falcon_el", "gptj_el", "gptj_el_types"]
 
 metrics = eval_basic(input_data, methods, get_basic_scores)
 with open('results/evaluation_results.json', "w") as f:
