@@ -1,6 +1,6 @@
 # An Evaluation Framework for Linking News Headlines to Event Concepts in a Knowledge Graph
 
-This repository contains evaluation scripts as well as evaluation results for news event identification using our curated news event linking dataset.
+This repository contains a curated news event linking dataset, output data from our event linking methods, an evaluation script, and the evaluation results for our linking methods.
 
 ## New Event Identification Corpus
 
@@ -8,7 +8,7 @@ This repository contains evaluation scripts as well as evaluation results for ne
 
 The dataset is available on Zenodo: https://doi.org/10.5281/zenodo.7909377
 
-The dataset is provided in a JSON format. In this JSON object, the keys correspond to the news headlines and the values are a list of objects with fields `id` and `label`: `id` is the Wikidata qid of the annotated entity and `label` is the Wikidata label.
+The dataset is provided in a JSON format. In this JSON object, the keys correspond to the news headlines and the values are a list of objects with fields `id` and `label`: `id` is the Wikidata QID of the annotated entity and `label` is the Wikidata label.
 
 #### Example
 ```
@@ -23,15 +23,15 @@ The dataset is provided in a JSON format. In this JSON object, the keys correspo
 ## Evaluation Framework
 
 Our evaluation framework consists of:
-- A news event identification corpus that links new headlines to Wikidata entities: [data/news_event_identication_dataset.json](data/news_event_identication_dataset.json)
-- Event linking data corresponding to a linking method provided in: [data/linking_outputs](data/linking_outputs). The path to this file is provided as input to the evaluation script.
+- A news event identification corpus that links news headlines to Wikidata entities: [data/news_event_identication_dataset.json](data/news_event_identication_dataset.json)
+- Event linking data corresponding to a linking method provided in: [data/linking_outputs](data/linking_outputs). *The path to this file is provided as input to the evaluation script.*
 - A script to calculate the accuracy metrics: [event_identification_evaluation.py](event_identification_evaluation.py)
-- The metrics calculated from the evaluation script will be stored: [results/](results/)
+- The metrics calculated from the evaluation script will be stored in: [results/](results/)
 
-The run the evaluation script, call:
+To run the evaluation script, call:
 ```
-python3 event_identification_evaluation.py
-Enter a linking ouputs path: data/linking_outputs/{choose an output}
+$python3 event_identification_evaluation.py
+Enter a linking ouputs path: data/linking_outputs/{choose an output data file}
 ```
 
 ## License
