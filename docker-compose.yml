@@ -1,0 +1,13 @@
+version: '3'
+services:
+  news_event_identification_evaluation:
+    image: python:3-alpine
+    container_name: news_event_identification_evaluation
+    volumes:
+      - ./:/home/
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        cd home
+        python3 event_identification_evaluation.py

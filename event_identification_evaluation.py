@@ -1,12 +1,12 @@
 import json
 
-#event concepts
+# event concepts
 with open("data/news_events_concepts.json", "r") as f:
     main_concepts = json.loads(f.read())
-# news headlines
+# news headlines dataset
 with open("data/news_events_manual.json", "r") as f:
     input_data = json.loads(f.read())
-# event linking apis outputs
+# event linking method saved outputs
 with open("data/event_linking_outputs.json", "r") as f:
     output_data = json.loads(f.read())
 
