@@ -1,51 +1,56 @@
+import os
 import json
+import csv
 
-# event concepts
-with open("data/news_events_concepts.json", "r") as f:
-    main_concepts = json.loads(f.read())
+linking_outputs_path = input('Enter a linking ouputs path: ')
+if not os.path.exists(linking_outputs_path):
+    print('Linking outputs path does not exist.')
+    exit()
+
+with open(linking_outputs_path, "r") as f:
+    linking_outputs = json.loads(f.read())
 # news headlines dataset
 with open("data/news_events_manual.json", "r") as f:
     input_data = json.loads(f.read())
-# event linking method saved outputs
-with open("data/event_linking_outputs.json", "r") as f:
-    output_data = json.loads(f.read())
-
-# score the methods.
-def get_basic_scores(input_data, output_data):
-    scores = {}
-    for api in output_data:
-        scores[api] = {}
-        for headline in output_data[api]:
-            scores[api][headline] = 0
-            for actual in input_data[headline]:
-                actual = actual['id']
-                if output_data[api][headline] == actual:
-                    scores[api][headline] += 1
-                    break
-    return scores
 
 # evaluate accuracy metrics
-def eval_basic(input_data, apis, get_scores):
-    scores = get_scores(input_data, output_data)
-    # evaluate
-    metrics = {}
-    for api in apis:
-        summing = 0
-        for headline in scores[api]:
-            summing += scores[api][headline]
-        metrics[api] = summing / len(input_data)
-    return metrics
+def evaluate(input_data, linking_outputs):
+    # calculate hits
+    hits = 0
+    skipped = 0
+    for headline in linking_outputs:
+        # skip headlines not present in the dataset
+        if headline not in input_data:
+            skipped += 1
+            continue
+        for actual in input_data[headline]:
+            actual = actual['id']
+            if linking_outputs[headline] == actual:
+                hits += 1
+                break
+    total = len(linking_outputs) - skipped
+    return {'hits': hits,
+            'total': total,
+            'accuracy': hits / total}
+    
+metrics = evaluate(input_data, linking_outputs)
 
-methods = [ "fuzzywuzzy_spacy", "zero_shot_classifier",
-           "opentapioca", "falcon", "wikifier", "opentapioca_el", 
-           "falcon_el", "gptj_el", "gptj_el_types"]
+# get or create results file
+basename = os.path.basename(linking_outputs_path)
+basename = basename[:basename.index('.')]
+result_path = "results/%s_results.csv" % basename
+if not os.path.exists(result_path):
+    open(result_path, "x")
+file = open(result_path, "w")
 
-metrics = eval_basic(input_data, methods, get_basic_scores)
-with open('results/evaluation_results.json', "w") as f:
-    json.dump(metrics, f)
+headers = ["Hits", "Total", "Accuracy"]
+csv_writer = csv.writer(file)
+csv_writer.writerow(headers)
+csv_writer.writerow([metrics['hits'], metrics['total'], metrics['accuracy']])
 
 print('#######################################################')
-print('Accuracy Metrics:')
-for method in metrics:
-    print(method + ": " + str(metrics[method]))
+print('Evaluation Results for %s' % os.path.basename(linking_outputs_path))
+print('Hits: %s' % metrics['hits'])
+print('Total: %s' % metrics['total'])
+print('Accuracy: %s' % metrics['accuracy'])
 print('#######################################################')
