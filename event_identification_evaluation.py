@@ -36,17 +36,21 @@ def evaluate(input_data, linking_outputs):
 metrics = evaluate(input_data, linking_outputs)
 
 # get or create results file
-basename = os.path.basename(linking_outputs_path)
-basename = basename[:basename.index('.')]
-result_path = "results/%s_results.csv" % basename
+result_path = "results/evaluation_results.csv"
 if not os.path.exists(result_path):
     open(result_path, "x")
-file = open(result_path, "w")
+r_file = open(result_path, "r")
+w_file = open(result_path, "a")
 
-headers = ["Hits", "Total", "Accuracy"]
-csv_writer = csv.writer(file)
-csv_writer.writerow(headers)
-csv_writer.writerow([metrics['hits'], metrics['total'], metrics['accuracy']])
+csv_writer = csv.writer(w_file)
+if len(r_file.readlines()) == 0:
+    headers = ["Methods", "Hits", "Accuracy"]
+    csv_writer.writerow(headers)
+
+basename = os.path.basename(linking_outputs_path)
+basename = basename[:basename.index('.')]
+method = basename[:basename.index('_output')]
+csv_writer.writerow([method, metrics['hits'], metrics['accuracy']])
 
 print('#######################################################')
 print('Evaluation Results for %s' % os.path.basename(linking_outputs_path))
