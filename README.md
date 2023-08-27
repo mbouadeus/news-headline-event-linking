@@ -1,4 +1,4 @@
-# An Evaluation Framework for Linking News Headlines to Event Concepts in a Knowledge Graph
+# An Evaluation Framework for Mapping News Headlines to Event Classes in a Knowledge Graph
 
 This repository contains a curated news event linking dataset, output data from our event linking methods, an evaluation script, and the evaluation results for our linking methods.
 
