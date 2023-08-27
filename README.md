@@ -2,7 +2,7 @@
 
 This repository contains a curated news event linking dataset, output data from our event linking methods, an evaluation script, and the evaluation results for our linking methods.
 
-## New Event Linking Corpus
+## News headline to event classes corpus
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7909377.svg)](https://doi.org/10.5281/zenodo.7909377)
 
